@@ -39,6 +39,9 @@ public abstract class AbstrDockerCmdExec {
 
     protected String registryAuth(AuthConfig authConfig) {
         try {
+            System.out.println("### authConfig.getAuth() " + authConfig.getAuth());
+            System.out.println("### ObjectMapper().writeValueAsString(authConfig) " + new ObjectMapper().writeValueAsString(authConfig));
+            System.out.println("### BaseEncoding.base64Url " + BaseEncoding.base64Url().encode(new ObjectMapper().writeValueAsString(authConfig).getBytes()));
             return BaseEncoding.base64Url().encode(new ObjectMapper().writeValueAsString(authConfig).getBytes());
         } catch (IOException e) {
             throw new RuntimeException(e);
